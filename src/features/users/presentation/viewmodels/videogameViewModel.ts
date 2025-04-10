@@ -6,17 +6,16 @@ export class VideoGameViewModel {
   genre: string = "";
   name: string = "";
   error: string | null = null;
-  isValid = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  onChangeTitle(genre: string) {
+  onChangeGenre(genre: string) {
     this.genre = genre;
   }
 
-  onChangename(name: string) {
+  onChangeName(name: string) {
     this.name = name;
   }
 
@@ -30,12 +29,7 @@ export class VideoGameViewModel {
       };
 
       try {
-        const data = await createVideogame(videogame);
-        console.log("Videogame creado:", JSON.stringify(data));
-
-        runInAction(() => {
-          if (data != null) this.isValid = true;
-        });
+        await createVideogame(videogame);
       } catch (err: any) {
         runInAction(() => {
           this.error = err.message || "Error al crear el videojuego";

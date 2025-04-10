@@ -8,7 +8,8 @@ const getAll = async (): Promise<Videogame[]> => {
   return res.data;
 };
 
-const create = async (vg: Omit<Videogame, 'id'>): Promise<void> => {
+const create 
+= async (vg: Omit<Videogame, 'id'>): Promise<void> => {
   await axios.post(API_URL, vg);
 };
 
